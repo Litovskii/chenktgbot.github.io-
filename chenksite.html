@@ -38,26 +38,53 @@
         color: white;
         cursor: pointer;
     }
+    .form-toggle {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .toggle-link {
+        cursor: pointer;
+        text-decoration: underline;
+        color: blue;
+    }
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="register-container">
     <h2>Регистрация</h2>
-    <form action="/register" method="post">
+    <form id="register-form" action="/register" method="post">
         <input type="text" name="username" placeholder="Имя пользователя" required>
         <input type="password" name="password" placeholder="Пароль" required>
         <input type="password" name="confirm_password" placeholder="Подтвердите пароль" required>
         <input type="submit" value="Зарегистрироваться">
     </form>
+    <div class="form-toggle">
+        Уже зарегистрированы? <span class="toggle-link" onclick="showLogin()">Войти</span>
+    </div>
 </div>
 
-<div class="container">
+<div class="container" id="login-container" style="display: none;">
     <h2>Авторизация</h2>
-    <form action="/login" method="post">
+    <form id="login-form" action="/login" method="post">
         <input type="text" name="username" placeholder="Имя пользователя" required>
         <input type="password" name="password" placeholder="Пароль" required>
         <input type="submit" value="Войти">
     </form>
+    <div class="form-toggle">
+        Еще не зарегистрированы? <span class="toggle-link" onclick="showRegister()">Зарегистрироваться</span>
+    </div>
 </div>
+
+<script>
+    function showLogin() {
+        document.getElementById("register-container").style.display = "none";
+        document.getElementById("login-container").style.display = "block";
+    }
+
+    function showRegister() {
+        document.getElementById("register-container").style.display = "block";
+        document.getElementById("login-container").style.display = "none";
+    }
+</script>
 </body>
 </html>
